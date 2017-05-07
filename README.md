@@ -1,2 +1,2 @@
 # comportamento-listas-encadeadas
-Programa didático afim de aprimorar os conhecimentos. Finalizado apenas o comportamento da pilha encadeada, as demais (fila, deque) ainda estão sendo feitas.
+Programa didático afim de aprimorar os conhecimentos. Finalizado apenas o comportamento da pilha e fila encadeada, o comportamento de deque ainda esta sendo feito.
