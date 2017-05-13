@@ -1,4 +1,3 @@
-
 public class StudentDeque {
 
 	private Student firstStudent;
@@ -6,76 +5,72 @@ public class StudentDeque {
 	private int count;
 	
 	public boolean isEmpty(){
-		boolean empty = false;
-		
-		if(count == 0){
-			empty = true;
-		}
-
-		return empty;
+		return firstStudent == null && lastStudent == null;
 	}
 	
-	public Object startDeque(){
-		Student aux = null;
-		if(!isEmpty()){
-			aux = firstStudent;
-		} else {
-			System.out.println("Deque is empty!");
-		}
-		
-		return aux.getObj();
+	public Student startDeque(){
+		return firstStudent;
 	}
 	
-	public Object endOfTheDeque(){
-		Student aux = null;
-		if(!isEmpty()){
-			aux = lastStudent;
-		} else {
-			System.out.println("Deque is empty!");
-		}
-		
-		return aux.getObj();
+	public Student endOfTheDeque(){
+		return lastStudent;
 	}
 	
-	public void insertFirst( Object obj){
-		if(lastStudent == null){
-			firstStudent = new Student();
-			lastStudent = firstStudent;
-			Student aux = new Student();
-			aux.setObj(obj);
-			aux.setNextStudent(firstStudent);
-			firstStudent = aux;
-			count++;
-		} else {
-			Student aux = new Student();
-			aux.setObj(obj);
-			aux.setNextStudent(firstStudent);
-			firstStudent = aux;
-			count++;
-		}
-	}
-	
-	public void insertLast(Object obj){
-		Student aux = new Student();
-		aux.setObj(obj);
-		if(count == 0){
-			aux.setNextStudent(lastStudent);
-			firstStudent = aux;
-			lastStudent = firstStudent;
-		} else {
-			lastStudent.setNextStudent(aux);
-			lastStudent = aux;
+	public void insertFirst(Student stud){
+		
+		//se não tem ninguém, stud é o início e o fim
+		if(isEmpty()) {
+			firstStudent = stud;
+			lastStudent = stud;
 		}
 		
-		count++;
+		Student aux = firstStudent;
+		firstStudent = stud;
+		firstStudent.setNext(aux);
+	}
+	
+	public void insertLast(Student stud){
+		
+		//se não tem ninguém, stud é o início e o fim
+		if(isEmpty()) {
+			firstStudent = stud;
+			lastStudent = stud;
+		}
+		
+		lastStudent.setNext(stud);
+		lastStudent = stud;
 	}
 	
 	public void removeFirst(){
-		if(count != 0){
-			firstStudent = firstStudent.getNextStudent();
-			count--;
-		} else {
-			System.out.println("Deque is empty!");
-		}
+		
+		if(firstStudent == null || firstStudent.getNext() == null) { //só tem um elemento
+			firstStudent = null;
+			lastStudent = null;
+		} else  { 
+			Student aux = firstStudent.getNext();
+			firstStudent = aux;
+		} 
+		
+	}
+	
+	public void removeLast(){
+		
+		if(firstStudent == null || firstStudent.getNext() == null) { //só tem um elemento
+			firstStudent = null;
+			lastStudent = null;
+		} else  { 
+			Student aux = firstStudent.getNext();
+
+			//segue até o final
+			while(aux.getNext() != null) {
+				if(aux.getNext() != null) {
+					aux.setNext(null);
+					break;
+				}
+				aux = aux.getNext();
+			}
+		} 
+		
+		
 	}
 }

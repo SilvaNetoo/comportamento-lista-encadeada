@@ -21,48 +21,37 @@ public class TestStudentDeque {
 	
 	@Test
 	public void testStartDeque(){
-		student.insertLast("Student 1");
-		student.insertLast("Student 2");
-		student.insertLast("Student 3");
-		student.insertLast("Student 4");
-		Assert.assertEquals(student.startDeque(), "Student 1");
+		Student neto = new Student("Neto",21);
+		student.insertLast(neto);
+		Assert.assertEquals(student.startDeque(),neto);
 	}
 	
 	@Test
 	public void testEndOfTheDeque(){
-		student.insertLast("Student 1");
-		student.insertLast("Student 2");
-		student.insertLast("Student 3");
-		student.insertLast("Student 4");
-		Assert.assertEquals(student.endOfTheDeque(), "Student 4");		
+		Student neto = new Student("Neto",21);
+		student.insertFirst(neto);
+		Student wesley = new Student("Wesley",21);
+		student.insertFirst(wesley);
+		Assert.assertEquals(student.endOfTheDeque(), neto);
 	}
 	
 	@Test
 	public void testInsertFirst(){
-		student.insertLast("Student 1");
-		student.insertLast("Student 2");
-		student.insertLast("Student 3");
-		student.insertFirst("Student 4");
-		Assert.assertEquals(student.startDeque(), "Student 4");
+		Student neto = new Student("Neto",21);
+		student.insertFirst(neto);
+		Student wesley = new Student("Wesley",21);
+		student.insertFirst(wesley);
+		Assert.assertEquals(student.startDeque(), wesley);
 	}
 	
 	@Test
 	public void testInsertLast(){
-		student.insertLast("Student 1");
-		student.insertLast("Student 2");
-		student.insertLast("Student 3");
-		student.insertLast("Student 4");
-		Assert.assertEquals(student.endOfTheDeque(), "Student 4");
+		Student neto = new Student("Neto",21);
+		student.insertLast(neto);
+		Student wesley = new Student("Wesley",21);
+		student.insertLast(wesley);
+		Student abella = new Student("Abella",30);
+		student.insertLast(abella);
+		Assert.assertEquals(student.endOfTheDeque(), abella);
 	}
-	
-	@Test
-	public void tetRemoveFirst(){
-		student.insertLast("Student 1");
-		student.insertLast("Student 2");
-		student.insertLast("Student 3");
-		student.insertLast("Student 4");
-		student.removeFirst();
-		Assert.assertEquals(student.startDeque(), "Student 2");
-	}
-
 }

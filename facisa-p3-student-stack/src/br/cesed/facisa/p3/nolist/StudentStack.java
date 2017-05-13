@@ -7,26 +7,28 @@ package br.cesed.facisa.p3.nolist;
  */
 public class StudentStack {
 
-	private Student student;
-	private int sizeStack;
+	private Student firstStudent;
+	private Student lastStudent;
+	
+	/**
+	 * Return true or false depending of the condition
+	 * @return true or false
+	 */
+	public boolean isEmpty(){
+		return firstStudent == null && lastStudent == null;
+	}
 	
 	/**
 	 * Add the student at last position of stack
-	 * @param element 
+	 * @param stud 
 	 */
-	public void push(Object element){
-		if(student == null){
-			Student auxStudent = new Student();
-			auxStudent.setElement(element);
-			auxStudent.setNextStudent(student);
-			student = auxStudent;
-			sizeStack++;
+	public void push(Student stud){
+		if(isEmpty()){
+			firstStudent = stud;
+			lastStudent = stud;
 		}else{
-			Student auxStudent = new Student();
-			auxStudent.setElement(element);
-			auxStudent.setNextStudent(student);
-			student = auxStudent;
-			sizeStack++;
+			lastStudent.setNext(stud);
+			lastStudent = stud;
 		}
 	}
 	
@@ -34,13 +36,20 @@ public class StudentStack {
 	 * Remove the student that's on last position of stack
 	 * @throws Exception The exception thrown if the stack size is less than zero 
 	 */
-	public void pop() throws Exception{
-		if(sizeStack >= 0){
-			student = student.getNextStudent();
-			sizeStack--;
-		}else{
-			throw new Exception("Stack is empty!");
-		}		
+	public void pop(){
+		if(!isEmpty()){
+			Student previous = null;
+			Student aux = firstStudent;
+			 while(aux.getNext() != null){
+				 previous = aux;
+				 aux = aux.getNext();
+			 }
+			lastStudent = previous;
+			previous.setNext(lastStudent);
+		} else {
+			System.out.println("Pilha is empty!");
+		}
+		
 	}
 	
 	/**
@@ -48,16 +57,13 @@ public class StudentStack {
 	 * @return student return last student
 	 * @throws Exception The exception thrown if the stack size is greater than zero
 	 */
-	public Object top() throws Exception{
-		if(sizeStack <= 0){
-			throw new Exception("Stack is empty!");
+	public Student top(){
+		if(!isEmpty()){
+			return lastStudent;
+		}else{
+			System.out.println("Pilha is empty!");
 		}
-		return student.getElement();
-	}
-	
-	void imprime() {
-		for (Student q = this.student; q != null; q = q.nextStudent){
-			System.out.println(q);
-		}
+		return null;
+		
 	}
 }

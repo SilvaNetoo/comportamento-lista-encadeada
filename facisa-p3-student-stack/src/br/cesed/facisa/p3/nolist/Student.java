@@ -2,22 +2,36 @@ package br.cesed.facisa.p3.nolist;
 
 public class Student {
 
-	private Object element;
-	protected Student nextStudent;
-
-	public Object getElement() {
-		return element;
+	private String name;
+	private int age;
+	private Student student;
+	
+	public Student(String name, int age) {
+		this.name = name;
+		this.age = age;
 	}
 
-	public void setElement(Object element) {
-		this.element = element;
+	public String getName() {
+		return name;
 	}
 
-	public Student getNextStudent() {
-		return nextStudent;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public void setNextStudent(Student next) {
-		this.nextStudent = next;
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public Student getNext() {
+		return student;
+	}
+
+	public void setNext(Student student) {
+		this.student = student;
 	}
 }

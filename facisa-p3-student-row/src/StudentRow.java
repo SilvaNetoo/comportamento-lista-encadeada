@@ -6,45 +6,51 @@ public class StudentRow {
 	private int count;
 	
 	public boolean isEmpty(){
-		boolean empty = false;
-		
-		if(count == 0){
-			empty = true;
-		}
-
-		return empty;
+		return firstStudent == null && lastStudent == null;
 	}
 	
-	public Object firstOnRow(){
-		Student aux = null;
-		if(!isEmpty()){
-			aux = firstStudent;
-		}else{
-			System.out.println("Row is empty!");
-		}
-		 return aux.getObj();
+	//o metodo está retornando não apenas o primeiro estudante, mas toda a fila encadeada solicionar
+	public Student firstOnRow(){
+		return firstStudent;
 	}
 	
-	public void enqueue(Object obj){
-		Student aux = new Student();
-		aux.setObj(obj);
-		if(this.count == 0){
-			aux.setNextStudent(lastStudent);
-			firstStudent = aux;
-			lastStudent = firstStudent;
-		}else{
+	//o metodo está retornando não apenas o primeiro estudante, mas toda a fila encadeada solicionar
+	public Student lastOnRow(){
+		return lastStudent;
+	}
+	
+	public void enqueue(Student stud){
+		if(isEmpty()){
+			firstStudent = stud;
+			lastStudent = stud;
+			count++;
+		} else {
+			Student aux = lastStudent;
+			lastStudent = stud;
 			lastStudent.setNextStudent(aux);
-			lastStudent = aux;
+			count++;
 		}
-		count++;
 	}
 	
 	public void dequeue(){
-		if(count != 0){
-			firstStudent = firstStudent.getNextStudent();
+		if(!isEmpty()){
+			Student previous = null;
+			Student aux = lastStudent;
+			while(aux.getNextStudent() != null){
+				previous = aux;
+				aux = aux.getNextStudent();
+			}
+			
+			
+			previous.setNextStudent(firstStudent);
+			firstStudent = previous;
 			count--;
 		} else {
 			System.out.println("Row is empty!");
 		}
+	}
+	
+	public int size(){
+		return count;
 	}
 }

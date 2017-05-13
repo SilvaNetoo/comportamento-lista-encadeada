@@ -19,28 +19,53 @@ public class TestStudentRow {
 	
 	@Test
 	public void testFirstOnRow(){
-		student.enqueue("Student 1");
-		student.enqueue("Student 2");
-		student.enqueue("Student 3");
-		Assert.assertEquals(student.firstOnRow(), "Student 1" );
+		Student neto = new Student("Neto",21);
+		student.enqueue(neto);
+		Student wesley = new Student("Wesley",21);
+		student.enqueue(wesley);
+		Student abella = new Student("Abella",21);
+		student.enqueue(abella);
+		Student mysael = new Student("Mysael",21);
+		student.enqueue(mysael);
+		Assert.assertEquals(student.firstOnRow(), neto);
+	}
+	
+	@Test
+	public void testLastOnRow(){
+		Student neto = new Student("Neto",21);
+		student.enqueue(neto);
+		Student wesley = new Student("Wesley",21);
+		student.enqueue(wesley);
+		Student abella = new Student("Abella",21);
+		student.enqueue(abella);
+		Student mysael = new Student("Mysael",21);
+		student.enqueue(mysael);
+		Assert.assertEquals(student.lastOnRow(), mysael);
 	}
 	
 	@Test
 	public void testEnqueue(){
-		student.enqueue("Student 1");
-		student.enqueue("Student 2");
-		student.enqueue("Student 3");
-		student.enqueue("Student 4");
-		Assert.assertEquals(student.isEmpty(), false);
+		Student neto = new Student("Neto",21);
+		student.enqueue(neto);
+		Student wesley = new Student("Wesley",21);
+		student.enqueue(wesley);
+		Student abella = new Student("Wesley",21);
+		student.enqueue(abella);
+		Student mysael = new Student("Neto",21);
+		student.enqueue(mysael);
+		Assert.assertEquals(student.lastOnRow(),mysael);
 	}
 	
 	@Test
 	public void testDequeue(){
-		student.enqueue("Student 1");
-		student.enqueue("Student 2");
-		student.enqueue("Student 3");
+		Student neto = new Student("Neto",21);
+		student.enqueue(neto);
+		Student wesley = new Student("Wesley",21);
+		student.enqueue(wesley);
+		Student abella = new Student("Abella",21);
+		student.enqueue(abella);
 		student.dequeue();
-		Assert.assertEquals(student.firstOnRow(), "Student 2");
+		Assert.assertEquals(student.firstOnRow(), wesley);
 	}
 
 }
